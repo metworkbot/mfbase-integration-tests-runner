@@ -1,2 +1,2 @@
-# mfbase-integration-tests-runner
-repository to run mfbase integration tests in CI 
+# mfserv-integration-tests-runner
+repository to run mfserv integration tests in CI
