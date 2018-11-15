@@ -1,0 +1,19 @@
+pipeline:
+  runtests:
+    image: metwork/mfext-${OS_VERSION}-testimage:${DRONE_BRANCH}
+    commands:
+      - yum -y install metwork-mfbase
+      - /opt/metwork-mfbase/bin/mfbase metwork_debug
+      - /opt/metwork-mfbase/bin/mfbase env |grep ^MF
+      - su --command="mfbase.start" - mfbase
+      - su --command="mfbase.status" - mfbase
+      - su --command="mfbase.stop" - mfbase
+    when:
+      branch: [ master, integration ]
+
+matrix:
+  OS_VERSION:
+    - centos6
+    - centos7
+
+branches: [ master, integration, ci_*, pci_* ]
